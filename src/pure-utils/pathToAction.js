@@ -62,11 +62,11 @@ export default (
       return payload
     }, {})
 
-    return { type, payload, meta: query ? { query } : {} }
+    return { type, payload, meta: { query, search } }
   }
 
   // This will basically will only end up being called if the developer is manually calling history.push().
   // Or, if visitors visit an invalid URL, the developer can use the NOT_FOUND type to show a not-found page to
-  const meta = { notFoundPath: pathname, ...(query ? { query } : {}) }
+  const meta = { notFoundPath: pathname, ...({query, search}) }
   return { type: NOT_FOUND, payload: {}, meta }
 }

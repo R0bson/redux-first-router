@@ -23,12 +23,13 @@ export default (initialState: LocationState, routesMap: RoutesMap) => (
   ) {
     const query = action.meta.location.current.query
     const search = action.meta.location.current.search
-
+    console.log('action', action)
     return {
       pathname: action.meta.location.current.pathname,
       type: action.type,
       payload: { ...action.payload },
-      ...(query && { query, search }),
+      ...(query && { query }),
+      ...(search && { search }),
       prev: action.meta.location.prev,
       kind: action.meta.location.kind,
       history: action.meta.location.history,
